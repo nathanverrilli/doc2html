@@ -120,7 +120,7 @@ public class doc2html {
 
     private static void printOptionHelp() {
         HelpFormatter hf = new HelpFormatter();
-        hf.printHelp("rtf2html", opts);
+        hf.printHelp(currentClassName, opts);
     }
 
     private static void setupOptions(String[] args) {

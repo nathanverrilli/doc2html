@@ -5,14 +5,22 @@
   <title>DOC2HTML</title>
   <link href="https://fonts.googleapis.com/css2?family=Fanwood+Text:ital@0;1&family=IBM+Plex+Mono:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
   <style type="text/css">
-    h1, h2, h3, h4, h4, h6 {
+    h1 {
       text-align: center;
+    }
+    h2 {
+      text-align: center;
+      margin: 2em 0 1em 0;
+    }
+    h3 {
+      text-align: left;
+      margin: 2em 0 .5em 0;
     }
     body {
       font-size: 1.25em;
       background-color: #eed;
       font-family: "Fanwood Text", serif;
-      margin: 0 8px 0 10px;
+      margin: 0 8px 2em 10px;
     }
     p {
 
@@ -24,11 +32,11 @@
       margin: .25em 0 .25em 0;
     }
     tt {
-      display: inline-block;
       font-family: "IBM Plex Mono", monospace;
       color: navy;
-      background-color: #dee;
-      padding: 2px;
+      background-color: #ccfbcc;
+      margin: 0;
+      font-size: 90%;
     }
   </style>
 </head>
@@ -52,7 +60,7 @@
   Sometimes, all one wants is the simplest formatting.
   Headers, bold, italic, bold-italic, and paragraphs.
   Monospace, maybe. Retrieving that bare-bones HTML
-  is <b>hard</b>.
+  is difficult.
 </p>
 <p>
   <tt>DOC2HTML</tt> makes it easy. It uses a powerful
@@ -81,11 +89,38 @@ JAR file, so running it as simple as </p>
   <li>
     <p><tt>java -jar doc2html.jar -f MyDocument.docx -o MyOutput.html</tt>
   </li>
-  <li>
-    This project builds the base doc2html.jar file, but it does not build
-    the more complex all-in-one jar. At some point, I will automate that
-    process in the project, but that is very much a <tt>TO-DO</tt>.
-  </li>
+<h2>Building this Project</h2>
+  <p>Building this project and the OneJar release jar is a two-step process (albeit big steps).</p>
+  <h3>Step One <i>build project</i></h3>
+  <p>Build the project. This is most easily done in Jetbrains IntelliJ, as all
+  the IDE configuration files and project files are committed as part of the project. There is
+  nothing magic about Intellij, however, other than its putting all the required
+    JAR files (and their dependencies) in the <tt>&hellip;/out/artifacts/doc2html_jar</tt>
+  directory as part of building the JAR file.</p>
+  <h3>Step Two <i>run makefile</i></h3>
+  <p>From the command line, run&nbsp;<tt>make onejar</tt>, but double-check your
+  assumptions at the door:</p>
+  <ul>
+    <li>The makefile assumes one is running on Windows. Rewriting it to work on *nix
+    is straightforward, but left to the reader.</li>
+    <li>The makefile assumes it can find two critical files <tt>d2h_MANIFEST.mf</tt>
+    and <tt>one-jar-boot-0.97.jar</tt> in the OneJar directory.</li>
+    <li>The makefile assumes it can create (and delete)
+      a temporary directory <tt>root</tt>
+    in the project directory, and it will assemble the project there</li>
+    <li>The makefile assumes it has access to <tt>7z</tt> (to extract files from a
+      jar file, and no, JAR is too limited to do this).</li>
+    <li>The makefile assumes it has access to the <tt>jar</tt>
+      command to reassemble the jar file. Using 7z was tempting
+    from a performance perspective, but I am not certain that
+    7z will stay within the rigid limits of the JAR file format
+      (also, the <tt>JAR</tt> command makes putting
+      the manifest in easier).</li>
+    <li>This uses GNU <tt>make</tt>.
+      Another flavor of <tt>make</tt>
+    might not behave similarly. It <i>probably</i> will,
+    but this is a list of assumptions, safe and otherwise.</li>
+  </ul>
 </ul>
 </body>
 </html>
