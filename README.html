@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOC2HTML</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fanwood+Text:ital@0;1&family=IBM+Plex+Mono:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <style type="text/css">
+    h1, h2, h3, h4, h4, h6 {
+      text-align: center;
+    }
+    body {
+      font-size: 1.25em;
+      background-color: #eed;
+      font-family: "Fanwood Text", serif;
+      margin: 0 8px 0 10px;
+    }
+    p {
+
+      margin: 0;
+      text-indent: 1.75em;
+    }
+    li p {
+      text-indent: 0;
+      margin: .25em 0 .25em 0;
+    }
+    tt {
+      display: inline-block;
+      font-family: "IBM Plex Mono", monospace;
+      color: navy;
+      background-color: #dee;
+      padding: 2px;
+    }
+  </style>
+</head>
+<body>
+     <h1>A Program to Transform<br />
+       Complex Text Documents<br />to<br />
+       Simple HTML</h1>
+<p>Word processors are wonderful: they manage multiple versions,
+  and WYSIWYG editors such as Microsoft Word, Wordperfect, and
+  LibreOffice can double as document publishing tools for simple
+  (and even complex) documents.
+</p>
+<p>
+  But this power comes with a price. Retrieving nicely
+  formatted text as simplistic HTML (without the powerful
+  formatting capabilities) is hard. Native output to HTML
+  wants to include font information, color information,
+  metadata, complex paragraph rules, &hellip
+</p>
+<p>
+  Sometimes, all one wants is the simplest formatting.
+  Headers, bold, italic, bold-italic, and paragraphs.
+  Monospace, maybe. Retrieving that bare-bones HTML
+  is <b>hard</b>.
+</p>
+<p>
+  <tt>DOC2HTML</tt> makes it easy. It uses a powerful
+  parser <i>(Apache Tika)</i>
+  to identify and parse input. It then renders the document
+  into simple HTML.
+</p>
+<p><tt>DOC2HTML</tt> was written for Java 11. There is an all-in-one
+JAR file, so running it as simple as </p>
+<ul>
+  <li><p>Making sure the right Java is present on the system. From a
+  command prompt, run:<br/></p>
+  <div class="indent">
+    <tt>java --version</tt>
+  </div>
+    <p>As long as the version is 11 or higher, all is well.</p>
+  </li>
+  <li>
+    <p>Download the <tt>doc2html.jar</tt> from the Release folder.
+    This JAR is specially compiled as an all-in-one jar, thanks to
+      the immensely useful
+      <a href="http://one-jar.sourceforge.net/">One-JAR&trade;</a>
+      project by Simon Tuffs. <i>Thank you, Simon, for this contribution to the open
+    source community!</i>
+  </li>
+  <li>
+    <p><tt>java -jar doc2html.jar -f MyDocument.docx -o MyOutput.html</tt>
+  </li>
+  <li>
+    This project builds the base doc2html.jar file, but it does not build
+    the more complex all-in-one jar. At some point, I will automate that
+    process in the project, but that is very much a <tt>TO-DO</tt>.
+  </li>
+</ul>
+</body>
+</html>
