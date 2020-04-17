@@ -1,4 +1,4 @@
-package com.mythosseed;
+package com.mythosseed.doc2html;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
@@ -18,15 +18,10 @@ import java.util.logging.Logger;
 
 
 public class doc2html {
-    // final static String oopsies = "Fudgesauce & Oopsies! ";
     final static Logger mainLogger = Logger.getLogger(doc2html.class.getName());
     protected static CommandLine cmd;
     private static Options opts;
-    private static String currentClassName = "doc2html";
-
-     public static void Main (String[] args) {
-        main(args);
-    }
+    private final static String currentClassName = "doc2html";
 
     public static void main(String[] args) {
 

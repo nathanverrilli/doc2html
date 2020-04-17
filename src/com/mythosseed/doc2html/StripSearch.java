@@ -1,4 +1,4 @@
-package com.mythosseed;
+package com.mythosseed.doc2html;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.ErrorHandler;

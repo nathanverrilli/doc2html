@@ -1,4 +1,4 @@
-package com.mythosseed;
+package com.mythosseed.doc2html;
 
 import java.util.logging.Logger;
 

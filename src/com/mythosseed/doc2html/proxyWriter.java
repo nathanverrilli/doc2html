@@ -1,4 +1,4 @@
-package com.mythosseed;
+package com.mythosseed.doc2html;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
