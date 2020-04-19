@@ -4,7 +4,11 @@ srcdir = \projects\doc2html
 
 jarname = doc2html.jar
 
-rootdir = $(srcdir)\root
+jardirname = doc2html_jar
+
+rootname = root
+
+rootdir = $(srcdir)\$(rootname)
 
 onejardir = $(srcdir)\OneJar
 
@@ -20,7 +24,7 @@ onejarmanifest = $(onejardir)\d2h_MANIFEST.mf
 
 classdir = $(srcdir)\out\production\doc2html\$(packagepath)
 
-srcjardir = $(srcdir)\out\artifacts\doc2html_jar
+srcjardir = $(srcdir)\out\artifacts\$(jardirname)
 
 srcjarfile = $(srcjardir)\$(jarname)
 
@@ -43,7 +47,7 @@ make all:
 	@echo *** this makefile is for windows ***
 	@echo *** it will not run correctly ******
 	@echo *** on Linux, Mac, or Unix *********
-
+	
 	
 # DEPENDENCIES
 	
@@ -61,12 +65,13 @@ onejar: $(onejarout) $(srcjarfile) $(classfiles)
 	7z x -o$(rootdir) $(onejardir)\$(onejarfile)
 	rmdir /S /Q $(rootdir)\src
 	mkdir $(rootdir)\main
-	mkdir $(rootdir)\lib
 	move /Y $(srcjarfile) $(rootdir)\main\$(jarname)
-	move /Y $(srcjardir) $(rootdir)\lib
+	move /Y $(srcjardir) $(rootdir)
+	rename $(rootdir)\$(jardirname) lib
 	cd $(rootdir) & jar -cvmf $(onejarmanifest) $(onejarout) .
-	move /Y $(rootdir)\lib $(srcjardir)
-	move /Y $(rootdir)\main\doc2html.jar $(srcjardir)
+	rename $(rootdir)\lib $(jardirname)
+	move $(rootdir)\main\$(jarname) $(rootdir)\$(jardirname)
+	move /Y $(rootdir)\$(jardirname) $(srcdir)\out\artifacts
 	-rmdir /S /Q $(rootdir)
 
 nuke:

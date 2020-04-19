@@ -89,6 +89,18 @@ JAR file, so running it as simple as </p>
   <li>
     <p><tt>java -jar doc2html.jar -f MyDocument.docx -o MyOutput.html</tt>
   </li>
+  <h2>Using the <b><tt>.exe</tt></b> version of doc2html</h2>
+  <p>This is a Windows executable
+    and it relies on having a Java engine available.
+    I am not certain what version of Java it requires &mdash; quite possibly Java 11, but
+    it <i>might</i> function with lower versions. I have tested it only with Java 11.
+  </p>
+  <p>The <tt>doc2html.exe</tt> file is available from the <tt>Releases</tt> folder.</p>
+  <p>I am looking into something that will not require Java on Windows, but the program <i>is</i>
+  written in Java, after all.
+  </p>
+
+
 <h2>Building this Project</h2>
   <p>Building this project and the OneJar release jar is a two-step process (albeit big steps).</p>
   <h3>Step One <i>build project</i></h3>
@@ -122,5 +134,17 @@ JAR file, so running it as simple as </p>
     but this is a list of assumptions, safe and otherwise.</li>
   </ul>
 </ul>
+     <h4>Building the DOC2HTML executable <i>not a step, no explicit directions provided here</i></h4>
+<p>The project was written and compiled with GraalVM-CE, and uses the GraalVM native-image
+command to transform the One-JAR&trade; file into an executable, albeit an executable that
+still requires Java (this makes sense, as GraalVM&rsquo;s handling of reflection is
+  admitted to be iffy, and One-JAR&trade; depends on reflection to get its custom class loader
+  working. I&rsquo;m pleased it works at all, given the reservations that the GraalVM
+  project team expresses about the use of reflection).
+<p>Building a native-image directly from the initial JAR and the JAR files it requires on its
+     CLASSPATH should be a simpler exercise &mdash; but it fails with an error message about
+     a class being missing <i>that is present</i> in the <tt>org.apache.tika.parsers&hellipjar</tt>.
+     This may be another, subtler, manifestation of a reflection problem, as Tika attempts to
+     ignore parsers that aren&rsquo;t present (more reflection).</p>
 </body>
 </html>
